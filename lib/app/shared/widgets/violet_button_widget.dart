@@ -6,11 +6,13 @@ class VioletButtonWidget extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
   final Color color;
+  final bool isLoading;
   const VioletButtonWidget({
     Key? key,
     this.color = AppColors.primary,
     required this.onPressed,
     required this.text,
+    this.isLoading = false,
   }) : super(key: key);
 
   @override
@@ -29,7 +31,7 @@ class VioletButtonWidget extends StatelessWidget {
           ),
         ),
       ),
-      child: Text(text),
+      child: isLoading ? const CircularProgressIndicator() : Text(text),
     );
   }
 }

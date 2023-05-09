@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:lottie/lottie.dart';
-import 'package:violet/app/shared/theme/app_colors.dart';
-import 'package:violet/app/shared/utils/app_animations.dart';
-import 'package:violet/app/shared/widgets/health_button_widget.dart';
+import '../../../core/http/backend_http_client.dart';
+import '../infra/repositories/health_repository_impl.dart';
+import '../infra/usecases/health_usecase_impl.dart';
+import '../../../shared/theme/app_colors.dart';
+import '../../../shared/utils/app_animations.dart';
+import '../../../shared/widgets/health_button_widget.dart';
+import '../infra/usecases/latlong_usecase_impl.dart';
+import 'controller/cardio_controller.dart';
 
 class CardioPage extends HookWidget {
   const CardioPage({Key? key}) : super(key: key);
@@ -11,6 +16,25 @@ class CardioPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
+    final controller = CardioController(
+      HealthUsecaseImpl(
+        repository: HealthRepositoryImpl(
+          client: BackendHttpClient(),
+        ),
+      ),
+      LatLongUseCaseImpl(
+        repository: HealthRepositoryImpl(
+          client: BackendHttpClient(),
+        ),
+      ),
+    );
+
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        controller.fetchInfos();
+      });
+      return () => controller.cancelTimer();
+    }, const []);
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -146,8 +170,8 @@ class CardioPage extends HookWidget {
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                Text.rich(
+                              children: [
+                                const Text.rich(
                                   TextSpan(
                                     text: '❤️ ',
                                     children: [
@@ -160,8 +184,13 @@ class CardioPage extends HookWidget {
                                     ],
                                   ),
                                 ),
-                                Text(
-                                  r'148/99',
+                                ValueListenableBuilder(
+                                  valueListenable: controller.heartRate,
+                                  builder: (_, dynamic value, __) {
+                                    return Text(
+                                      '$value/120',
+                                    );
+                                  },
                                 ),
                               ],
                             ),
@@ -170,8 +199,8 @@ class CardioPage extends HookWidget {
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                Text.rich(
+                              children: [
+                                const Text.rich(
                                   TextSpan(
                                     text: '💨 ',
                                     children: [
@@ -184,8 +213,13 @@ class CardioPage extends HookWidget {
                                     ],
                                   ),
                                 ),
-                                Text(
-                                  r'87',
+                                ValueListenableBuilder(
+                                  valueListenable: controller.bloodOxygen,
+                                  builder: (_, dynamic value, __) {
+                                    return Text(
+                                      '$value',
+                                    );
+                                  },
                                 ),
                               ],
                             ),

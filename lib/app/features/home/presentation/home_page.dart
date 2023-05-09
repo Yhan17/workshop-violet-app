@@ -1,21 +1,27 @@
-import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
-import 'package:violet/app/shared/theme/app_colors.dart';
-import 'package:violet/app/shared/utils/app_images.dart';
-import 'package:violet/app/shared/widgets/violet_button_widget.dart';
+import 'controllers/home_controller.dart';
 
-import '../../shared/components/bottom_bar_component.dart';
-import '../../shared/widgets/health_button_widget.dart';
-import '../../shared/widgets/personal_icon_widget.dart';
+import '../../../shared/components/bottom_bar_component.dart';
+import '../../../shared/theme/app_colors.dart';
+import '../../../shared/utils/app_images.dart';
+import '../../../shared/widgets/health_button_widget.dart';
+import '../../../shared/widgets/personal_icon_widget.dart';
+import '../../../shared/widgets/violet_button_widget.dart';
 
 class HomePage extends HookWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = HomeController();
 
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        controller.requestPermissions();
+      });
+    }, const []);
     return Scaffold(
       body: SafeArea(
         child: ListView(

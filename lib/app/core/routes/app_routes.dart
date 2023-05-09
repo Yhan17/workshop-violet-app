@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:violet/app/features/cardio/cardio_page.dart';
-import 'package:violet/app/features/home/home_page.dart';
-import 'package:violet/app/features/login/login_page.dart';
-import 'package:violet/app/features/maps/maps_page.dart';
-import 'package:violet/app/features/splash/splash_page.dart';
+import '../../features/cardio/presentation/cardio_page.dart';
+import '../../features/home/presentation/home_page.dart';
+import '../../features/login/presentation/login_page.dart';
+import '../../features/maps/maps_page.dart';
+import '../../features/splash/splash_page.dart';
 
 class AppRoutes {
   static final GoRouter router = GoRouter(
