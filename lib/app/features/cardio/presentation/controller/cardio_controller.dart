@@ -5,10 +5,10 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../core/infra/dtos/user_dto.dart';
 import '../../domain/entities/health_entity.dart';
 import '../../domain/usecases/health_usecase.dart';
 import '../../domain/usecases/latlong_usecase.dart';
-import '../../../login/infra/dtos/user_dto.dart';
 
 class CardioController with ChangeNotifier {
   final HealthUsecase _healthUsecase;

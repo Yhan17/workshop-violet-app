@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/common_state/common_state.dart';
 import '../../../../core/failures/failures.dart';
-import '../../domain/entities/user_entity.dart';
+import '../../../../core/domain/entities/user_entity.dart';
 import '../../domain/usecases/login_usecase.dart';
 
 typedef LoginState = CommonState<Failures, UserEntity>;

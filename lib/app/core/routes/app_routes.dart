@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/cardio/presentation/cardio_page.dart';
 import '../../features/home/presentation/home_page.dart';
 import '../../features/login/presentation/login_page.dart';
-import '../../features/maps/maps_page.dart';
+import '../../features/maps/presentation/maps_page.dart';
 import '../../features/splash/splash_page.dart';
 
 class AppRoutes {

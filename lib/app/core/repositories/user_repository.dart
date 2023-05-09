@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import '../entities/user_entity.dart';
+import '../domain/entities/user_entity.dart';
 
-import '../../../../core/failures/failures.dart';
+import '../failures/failures.dart';
 
 abstract class UserRepository {
   Future<Either<Failures, UserEntity>> fetchUser(String name);

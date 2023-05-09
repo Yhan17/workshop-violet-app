@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import '../../domain/entities/user_entity.dart';
 
+
 @immutable
 class UserDto {
   final int id;

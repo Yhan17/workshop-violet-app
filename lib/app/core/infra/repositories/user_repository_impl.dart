@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../core/failures/failures.dart';
-import '../../../../core/http/backend_http_client.dart';
 import '../../domain/entities/user_entity.dart';
-import '../../domain/repositories/user_repository.dart';
+import '../../failures/failures.dart';
+import '../../http/backend_http_client.dart';
+import '../../repositories/user_repository.dart';
 import '../dtos/user_dto.dart';
 
 class UserRepositoryImpl extends UserRepository {
